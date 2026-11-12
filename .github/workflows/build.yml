@@ -43,6 +43,15 @@ jobs:
           cp "$RUNNER_TEMP/pubspec.yaml" pubspec.yaml
           cp "$RUNNER_TEMP/AndroidManifest.xml" android/app/src/main/AndroidManifest.xml
 
+      - name: Disable release lint (fixes lint crash in url_launcher)
+        run: |
+          LINT_BLOCK='lint {\n        checkReleaseBuilds = false\n        abortOnError = false\n    }'
+          if [ -f android/app/build.gradle.kts ]; then
+            sed -i "s/^android {/android {\n    $LINT_BLOCK/" android/app/build.gradle.kts
+          else
+            sed -i "s/^android {/android {\n    $LINT_BLOCK/" android/app/build.gradle
+          fi
+
       - name: Get dependencies
         run: flutter pub get
 
