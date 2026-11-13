@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+ <style name="Theme.MikroTikScanner" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+ <item name="colorPrimary">@color/black</item>
+ <your background image />
+ <item name="android:windowBackground">@drawable/ali_bg</item>
+ </style>
+</resources>
