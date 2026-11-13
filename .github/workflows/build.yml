@@ -42,7 +42,9 @@ jobs:
       - name: Disable Lint vital in all subprojects (url_launcher crash workaround)
         run: |
           for f in android/build.gradle.kts android/build.gradle; do
-            [ -f "$f" ] && printf '\nsubprojects { tasks.matching { it.name.startsWith("lintVital") }.configureEach { enabled = false } }\n' >> "$f"
+            if [ -f "$f" ]; then
+              printf '\nsubprojects { tasks.matching { it.name.startsWith("lintVital") }.configureEach { enabled = false } }\n' >> "$f"
+            fi
           done
 
       - name: Get dependencies
